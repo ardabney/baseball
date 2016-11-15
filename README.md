@@ -22,7 +22,7 @@ Variable definitions:
 -- CS: number of times caught attempting to steal base
 -- BB: number of 'base on balls' (walks)
 -- SO: number of strikeouts
--- IBB: ???
+-- IBB: ??? (ignore)
 -- HBP: number of times hit by pitch
 -- SH: ??? (ignore)
 -- SF: ??? (ignore)
