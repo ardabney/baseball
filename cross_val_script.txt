@@ -1,0 +1,20 @@
+
+## Load data
+DTA <- read.csv("hof_data.csv")
+
+## Extract a few offensive statistics (numerical variables).
+num_vars <- c("SP", "G", "H", "AB", "ASG", "R")
+X <- as.matrix(DTA[, num_vars])
+
+
+glm.fit = glm(HOF ~ num_vars, data = DTA)
+cv.err = cv.glm(DTA, glm.fit)
+
+## Performs LOOCV 
+for (i in 1:n) {
+    glm.fit = glm(HOF ~ poly(num_vars, i), data = DTA)
+    cv.error[i] = cv.glm(DTA, glm.fit)$delta[1]
+}
+
+## Display the overall error of the model
+cv.error
