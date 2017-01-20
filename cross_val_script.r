@@ -18,27 +18,24 @@ n <- nrow(DTA)
 
 ## Performs LOOCV 
 for (i in 1:n) {
-	test <- as.matrix(DTA[i, c("HOF")])
-	tr1 <- as.matrix(DTA[0:(i-1), c("HOF")])
-	tr2 <- as.matrix(DTA[(i+1):1016, c("HOF")])
+	test <- as.matrix(DTA[i,])
+	tr1 <- as.matrix(DTA[(0:(i-1)),])
+	tr2 <- as.matrix(DTA[((i+1):n),])
     train <- as.data.frame(merge(tr1, tr2, by = "row.names", all = TRUE))
 	
     lda_out <- lda(HOF ~ X, data = train)
     lda_pred <- predict(lda_out, newdata = test)
 	
-	p_hat <- lda_pred$posterior
-	
 	for (j in 1:thresh_seq) {
+		lda_pred$posterior = thresh_seq[j]
+		
 		results <- as.matrix(table(lda_pred, DTA$HOF))
 		
-		sens[i] = results[1,1] / (results[1,1] + results[2,1])
-		spec[i] = results[1,2] / (results[1,2] + results[2,2])
-	    acc[i] = (sens[i] + spec[i]) / 2
+		sens[i,j] = results[1,1] / (results[1,1] + results[2,1])
+		spec[i,j] = results[1,2] / (results[1,2] + results[2,2])
+	    acc[i,j] = (sens[i,j] + spec[i,j]) / 2
 	}
 	
 }
 
 ## can use sens, spec, and acc to display info
-
-
-
