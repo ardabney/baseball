@@ -1,0 +1,7 @@
+> library(MASS)
+> DTA = read.csv("hof_data.csv")
+> DTA.lda <- lda( HOF ~ H + HR + RBI + AVG + SLG + OBP, data = DTA)
+> DTA.lda
+> DTA.lda.p = predict(DTA.lda, baseball=DTA[,c(num_vars)])$HOF
+> table(DTA.lda.p, DTA$HOF)  
+ ## this is where the error occurs (all arguments must have the same length)
