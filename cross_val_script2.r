@@ -20,6 +20,10 @@ n <- nrow(DTA)
 
 ## Performs LOOCV 
 for (i in 1:n) {
+	predNoRight = 0
+	predNoWrong = 0
+	predYesRight = 0
+	predYesWrong = 0
 
 	test <- DTA_num[i,]
 	##tr1 <- as.matrix(DTA_num[(1:(i-1)),])
