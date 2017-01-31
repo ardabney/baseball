@@ -2,6 +2,7 @@
 
  ##create normalized variables in new columns
  DTA$R_Norm <- (DTA$R / DTA$AB)
+# DTA$H_Norm <- (DTA$H / DTA$AB) # redundant now
  DTA$DB_Norm <- (DTA$DB / DTA$AB)
  DTA$TP_Norm <- (DTA$TP / DTA$AB)
  DTA$HR_Norm <- (DTA$HR / DTA$AB)
@@ -18,6 +19,6 @@
  DTA$DBTP_Norm <- (DTA$DBTP / DTA$AB)
  DTA$BBSB_Norm <- (DTA$BBSB / DTA$AB)
 
- Normalized <-c("SP", "ASG", "G", "AB", "R_Norm", "H_Norm", "DB_Norm", "TP_Norm", "HR_Norm", "RBI_Norm", "SB_Norm", "CS_Norm", "BB_Norm", "SO_Norm", "IBB_Norm", "HBP_Norm", "SH_Norm", "SF_Norm", "GIDP_Norm", "DBTP_Norm", "BBSB_Norm")
+ Normalized <-c("SP", "ASG", "G", "AB", "AVG", "OBP", "SLG", "R_Norm", "DB_Norm", "TP_Norm", "HR_Norm", "RBI_Norm", "SB_Norm", "CS_Norm", "BB_Norm", "SO_Norm", "IBB_Norm", "HBP_Norm", "SH_Norm", "SF_Norm", "GIDP_Norm", "DBTP_Norm", "BBSB_Norm")
  DTA_Norm <- DTA[Normalized] ##error here
  cor(DTA_Norm)
