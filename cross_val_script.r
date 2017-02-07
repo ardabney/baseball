@@ -73,7 +73,7 @@ predNoWrong = 0
 	}
 	
 	sens[j] = predYesRight / (predYesRight + predYesWrong) # calculation for sensitivity 
-	spec[j] = predNoWrong / (predNoWrong + predNoRight) # calculation for specificity 
+	spec[j] = predNoRight / (predNoWrong + predNoRight) # calculation for specificity 
 	acc[j] = (sens[j] + spec[j]) / 2 # calculation for balanced accuracy
 }
 
