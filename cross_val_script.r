@@ -73,8 +73,20 @@ predNoWrong = 0
 	}
 	
 	sens[j] = predYesRight / (predYesRight + predYesWrong) # calculation for sensitivity 
-	spec[j] = predNoRight / (predNoWrong + predNoRight) # calculation for specificity 
+	spec[j] = predNoWrong / (predNoWrong + predNoRight) # calculation for specificity 
 	acc[j] = (sens[j] + spec[j]) / 2 # calculation for balanced accuracy
 }
 
+#prints output to file
+sink('lda_cross_val_1.txt')
+cat("LDA: SP, G, H, AB, ASG, R\n")
+cat("threshold values:\n")
+print(thresh_seq)
+cat("sens:\n")
+print(sens)
+cat("spec:\n")
+print(spec)
+cat("acc:\n")
+print(acc)
+sink()
 ## can use sens, spec, and acc to display info
