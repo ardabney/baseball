@@ -16,9 +16,12 @@ test = NULL
 train = NULL
 thresh_seq = seq(from = .05, to = .95, by = .05)
 n <- nrow(DTA)
-
+clm <- ncol(DTA) - 5
 pred = matrix(0, nrow = n, ncol = 19)
 check = matrix(0, nrow = n, ncol = 19)
+
+for (v in num) { 
+DTA_num <- DTA[, c("HOF", (v + 5))] # chooses indiviual variable to test
 
 ## Performs LOOCV 
 for (j in 1:19) {
@@ -76,7 +79,9 @@ predNoWrong = 0
 	spec[j] = predNoWrong / (predNoWrong + predNoRight) # calculation for specificity 
 	acc[j] = (sens[j] + spec[j]) / 2 # calculation for balanced accuracy
 }
+}
 
+if (acc/19 > .6) {
 #prints output to file
 sink('lda_cross_val_1.txt')
 cat("LDA: SP, G, H, AB, ASG, R\n")
@@ -89,4 +94,5 @@ print(spec)
 cat("acc:\n")
 print(acc)
 sink()
+}
 ## can use sens, spec, and acc to display info
