@@ -2,12 +2,12 @@
 library(MASS)
 
 ## Load data
-DTA <- read.csv("hof_data.csv")
+DTA <- read.csv("norm_hof_all_cp.csv")
 
 ## Extract a few offensive statistics (numerical variables).
-num_vars <- c("SP", "G", "H", "AB", "ASG", "R")
-X <- as.matrix(DTA[, num_vars])
-DTA_num <- DTA[, c("HOF", num_vars)]
+#num_vars <- c("AB", "OBP", "SF_Nornm", "SLG", "SB_Norm", "SH_Norm")
+#X <- as.matrix(DTA[, num_vars])
+DTA_num <- DTA[, c(1,2,3,4,5)]
 
 ## Variable declarations
 sens = NULL # sensitivity 
@@ -77,7 +77,7 @@ predNoWrong = 0 # reset number of HOF no predicted incorrectly
 	}
 	
 	sens[j] = predYesRight / (predYesRight + predYesWrong) # calculation for sensitivity 
-	spec[j] = predNoWrong / (predNoWrong + predNoRight) # calculation for specificity 
+	spec[j] = predNoRight / (predNoWrong + predNoRight) # calculation for specificity 
 	acc[j] = (sens[j] + spec[j]) / 2 # calculation for balanced accuracy
 }
 

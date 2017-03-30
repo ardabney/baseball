@@ -16,13 +16,13 @@ index = 1
 
 thresh_seq = seq(from = .05, to = .95, by = .05) # list of threshold values
 n <- nrow(DTA) # stores number of rows in the data set
-clm <- seq(from = 4, to = 26, by = 1) #stores the index of columns with numerical data
+clm <- seq(from = 5, to = 25, by = 1) #stores the index of columns with numerical data
 pred = matrix(0, nrow = n, ncol = 19) # matrix for storing predictions
 check = matrix(0, nrow = n, ncol = 19) # matrix for storing the results of LOOCV
 
 for (v in clm) { 
 
-DTA_num <- as.matrix(DTA[, c(2,3, (v))]) # chooses indiviual variable to test
+DTA_num <- as.matrix(DTA[, c(1,2,3,4, (v))]) # chooses indiviual variable to test
 
 for (j in 1:19) { # makes a prediction for each threshold value
  # cycles through all data, using excluding one player each time to be used later for the accuracy check
@@ -82,7 +82,7 @@ predNoWrong = 0 # reset number of HOF no predicted incorrectly
 	}
 	
 	sens[j] = predYesRight / (predYesRight + predYesWrong) # calculation for sensitivity 
-	spec[j] = predNoWrong / (predNoWrong + predNoRight) # calculation for specificity 
+	spec[j] = predNoRight / (predNoWrong + predNoRight) # calculation for specificity 
 	acc[j] = (sens[j] + spec[j]) / 2 # calculation for balanced accuracy
 }
 	maxacc[index] = max(acc)
